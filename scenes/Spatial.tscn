@@ -71,7 +71,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000614643, -0.0107503, 3.808
 
 [node name="BgMusic" type="AudioStreamPlayer" parent="WorldEnvironment"]
 stream = ExtResource( 5 )
-autoplay = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.560191, 0.828364, 0, -0.828364, 0.560191, 0, 6.18692, 1.70037 )

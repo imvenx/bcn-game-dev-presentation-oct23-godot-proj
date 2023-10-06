@@ -16,6 +16,8 @@ func _ready():
 	Arcane.init()
 	Arcane.signals.connect("ArcaneClientInitialized", self, "onArcaneClientInitialized")
 
+	$BgMusic.play()
+
 	yield(get_tree().create_timer(4.0), "timeout")
 	$CSGMesh/Phone.hide()
 	$CSGMesh/sword.show()
