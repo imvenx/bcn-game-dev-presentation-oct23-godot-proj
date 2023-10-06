@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/bat_joined.obj-72d6e10a263e20404931d74fbaeda62d.mesh"
+
+[deps]
+
+files=[ "res://.import/bat_joined.obj-72d6e10a263e20404931d74fbaeda62d.mesh" ]
+
+source_file="res://meshes/bat_joined.obj"
+dest_files=[ "res://.import/bat_joined.obj-72d6e10a263e20404931d74fbaeda62d.mesh", "res://.import/bat_joined.obj-72d6e10a263e20404931d74fbaeda62d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

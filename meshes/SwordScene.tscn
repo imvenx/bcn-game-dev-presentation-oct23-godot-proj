@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://meshes/sword/scene.gltf" type="PackedScene" id=1]
+
+[node name="scene" instance=ExtResource( 1 )]
+transform = Transform( 0.9983, 0, 0.0582784, 0, 1, 0, -0.0582784, 0, 0.9983, 0, 0, 0 )
+
+[node name="Sketchfab_model" parent="." index="0"]
+transform = Transform( 0.0582773, -0.00247853, 0.998298, 0.00605624, 0.999979, 0.00212916, -0.998283, 0.00592185, 0.0582911, 0.0736874, 18.1971, -0.0445351 )

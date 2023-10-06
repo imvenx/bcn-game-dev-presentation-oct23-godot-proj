@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/guitar.mp3-cb6f91fc051011401a139c1493f52ef3.mp3str"
+
+[deps]
+
+source_file="res://sounds/guitar.mp3"
+dest_files=[ "res://.import/guitar.mp3-cb6f91fc051011401a139c1493f52ef3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

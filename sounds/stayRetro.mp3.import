@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/stayRetro.mp3-4ea49224bf75f87b6661904007d04f7c.mp3str"
+
+[deps]
+
+source_file="res://sounds/stayRetro.mp3"
+dest_files=[ "res://.import/stayRetro.mp3-4ea49224bf75f87b6661904007d04f7c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

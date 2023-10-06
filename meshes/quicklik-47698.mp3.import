@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/quicklik-47698.mp3-ed37599ad77c2e8c0b8ae4934b3c32a6.mp3str"
+
+[deps]
+
+source_file="res://meshes/quicklik-47698.mp3"
+dest_files=[ "res://.import/quicklik-47698.mp3-ed37599ad77c2e8c0b8ae4934b3c32a6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
