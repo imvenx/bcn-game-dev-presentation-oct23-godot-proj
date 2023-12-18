@@ -25,10 +25,10 @@ func _init(params) -> void:
 
 
 func initWebsocket(params):
-	if Engine.has_singleton("DebugMode") or ["Windows", "X11", "OSX"].has(OS.get_name()):
-		initAsExternalClient(params)
+#	if Engine.has_singleton("DebugMode") or ["Windows", "X11", "OSX"].has(OS.get_name()):
+	initAsExternalClient(params)
 		
-	else: initAsIframeClient(params)
+#	else: initAsIframeClient(params)
 
 	if clientInitData == null: 
 		printerr("ArcaneError: clientInitData is null on initWebSocket")
