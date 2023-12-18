@@ -18,16 +18,17 @@ var reverseProxyPort:String
 var ipOctets:String
 var url:String
 
+var clientType
 
 func _init(params) -> void:
 	initWebsocket(params)
 
 
 func initWebsocket(params):
-#	if Engine.has_singleton("DebugMode") or ["Windows", "X11", "OSX"].has(OS.get_name()):
-	initAsExternalClient(params)
+	if Engine.has_singleton("DebugMode") or ["Windows", "X11", "OSX"].has(OS.get_name()):
+		initAsExternalClient(params)
 		
-#	else: initAsIframeClient(params)
+	else: initAsIframeClient(params)
 
 	if clientInitData == null: 
 		printerr("ArcaneError: clientInitData is null on initWebSocket")
@@ -52,11 +53,12 @@ func initAsExternalClient(params):
 	protocol = 'ws'
 	host = '127.0.0.1'
 #	host = '192.168.' + params.arcaneCode
-	if not params.has('reverseProxyPort'): params['reverseProxyPort'] = '3009'
+	if not params.has('reverseProxyPort'): params['reverseProxyPort'] = '3689'
 	if not params.has('deviceType'): params['deviceType'] = 'view'
 	deviceType = params.deviceType
 	url = protocol + '://' + host + ':' + params.reverseProxyPort + '/'
-	clientInitData = { "clientType": "external", "deviceType": deviceType }
+	clientType = "external"
+	clientInitData = { "clientType": clientType, "deviceType": deviceType }
 	
 	
 func initAsIframeClient(params):
@@ -78,9 +80,10 @@ func initAsIframeClient(params):
 		printerr('Missing deviceId on query params on initAsIframeClient')
 		return
 		
-	clientInitData = { "clientType": "iframe", "deviceId": deviceId }
+	clientType = "iframe"
+	clientInitData = { "clientType": clientType, "deviceId": deviceId }
 		
-	if not params.has('port') or !params.port: params.port = '3005'
+	if not params.has('port') or !params.port: params.port = '3685'
 	
 	host = JavaScript.eval('window.location.hostname')
 	protocol = 'wss'

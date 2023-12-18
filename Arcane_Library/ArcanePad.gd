@@ -102,8 +102,15 @@ func onGetPointer(e, from):
 	if(from != internalId): return
 	emit_signal("GetPointer", e)
 
-func calibratePointer():
-	Arcane.msg.emit(AEvents.CalibratePointerEvent.new(), internalIdList)
+func calibratePointer(isTopLeft:bool):
+	Arcane.msg.emit(AEvents.CalibratePointerEvent.new(isTopLeft), internalIdList)
+
+
+func setScreenOrientationPortrait():
+	Arcane.msg.emit(AEvents.SetScreenOrientationPortraitEvent.new(), internalIdList)
+
+func setScreenOrientationLandscape():
+	Arcane.msg.emit(AEvents.SetScreenOrientationLandscapeEvent.new(), internalIdList)
 
 
 func vibrate(milliseconds: int):
@@ -119,8 +126,8 @@ func onCloseArcaneMenu(e, from):
 	emit_signal("CloseArcaneMenu", e)
 
 
-#func send(event: AEvents.ArcaneBaseEvent):
-#	Arcane.msg.emit(event, iframeIdList)
+func emit(event: AEvents.ArcaneBaseEvent):
+	Arcane.msg.emit(event, iframeIdList)
 #
 #func on(eventName: String, callback: FuncRef):
 #	var fullEventName = eventName + '_' + iframeId

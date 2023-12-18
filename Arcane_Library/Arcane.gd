@@ -3,7 +3,7 @@ extends Node
 # This is enum to prevent user edit on inspector :/
 #@export_enum("0.0.1") var LIBRARY_VERSION: String = "0.0.1" 
 
-var LIBRARY_VERSION = '0.0.1'
+var LIBRARY_VERSION = '0.1.1'
 
 #@export_enum("view", "pad")
 #var deviceType: String = "view"
@@ -23,17 +23,27 @@ var isWebEnv
 
 var signals = ASignals.new()
 
-func init(params = {
+var defaultParams = {
 	'deviceType': 'view',
-	'port': '3005',
-	'reverseProxyPort': '3009',
+	'port': '3685',
+	'reverseProxyPort': '3689',
+	'hideMouse': true,
+	'padOrientation': 'Landscape'
 #	'arcaneCode': '',
-	}):
+	}
+	
+var initParams = defaultParams
+
+func init(providedParams = defaultParams):
+	
+	# Merge the providedParams dictionary into the params dictionary
+	for key in providedParams:
+		initParams[key] = providedParams[key]
 		
 	utils = AUtils.new()
 	self.add_child(utils)
 	
-	msg = AWebsocketService.new(params)
+	msg = AWebsocketService.new(initParams)
 	self.add_child(msg)
 	
 	print('Using ArcaneLibrary version ', LIBRARY_VERSION)
@@ -46,11 +56,29 @@ func onInitialize(initializeEvent, _from):
 	msg.onInitialize(initializeEvent)
 	
 	refreshGlobalState(initializeEvent.globalState)
-
+	if msg.deviceType == "pad" && msg.clientType == "iframe": padInitialization()
+	elif msg.deviceType == "view": viewInitialization()
+	
 	var initialState = AModels.InitialState.new(pads)
 	signals.emit_signal('ArcaneClientInitialized', initialState)
 	Arcane.signals.disconnect('Initialize', self, 'onInitialize')
 
+func padInitialization(): 
+	
+	for p in pads: 
+		if p.deviceId == msg.deviceId:
+			 pad = p
+
+	if pad == null: 
+		printerr('Pad is null on iframe pad initialization')
+		return
+	
+	if initParams.padOrientation == 'Landscape': pad.setScreenOrientationLandscape()
+	elif initParams.padOrientation == 'Portrait': pad.setScreenOrientationPortrait()
+	
+func viewInitialization():
+	if(initParams.hideMouse == true):
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _refreshGlobalState(e, _from):
 	refreshGlobalState(e.refreshedGlobalState)
@@ -59,9 +87,7 @@ func refreshGlobalState(refreshedGlobalState):
 	devices = refreshedGlobalState.devices
 	refreshClientsIds(devices)
 	pads = getPads(devices)
-	for p in pads: 
-		if p.deviceId == msg.deviceId:
-			 pad = p
+
 
 func refreshClientsIds(_devices: Array) -> void:
 	var _internalPadsIds: Array = []
