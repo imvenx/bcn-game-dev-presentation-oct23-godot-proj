@@ -13,22 +13,24 @@ var gunSound = load("res://sounds/gun.mp3")
 
 func _ready():
 #	var initParams = { 'arcaneCode': '0.30' }
+	yield(get_tree().create_timer(.5), "timeout")
+
 	Arcane.init()
 	Arcane.signals.connect("ArcaneClientInitialized", self, "onArcaneClientInitialized")
 
 	$BgMusic.play()
 
-	yield(get_tree().create_timer(4.0), "timeout")
+	yield(get_tree().create_timer(5.0), "timeout")
 	$CSGMesh/Phone.hide()
 	$CSGMesh/sword.show()
 	
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(get_tree().create_timer(3.0), "timeout")
 	playSound(swordSound)
 	
 	yield(get_tree().create_timer(2.0), "timeout")
 	$CSGMesh/sword.hide()
 	$CSGMesh/bat_joined.show()
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(get_tree().create_timer(3.0), "timeout")
 	playSound(batSound)
 	
 	yield(get_tree().create_timer(2.0), "timeout")
@@ -43,6 +45,7 @@ func _ready():
 	$BgMusic.stop()
 	
 	yield(get_tree().create_timer(2.0), "timeout")
+	rockMusic.loop = false
 	$BgMusic.stream = rockMusic
 	$BgMusic.play()
 	
