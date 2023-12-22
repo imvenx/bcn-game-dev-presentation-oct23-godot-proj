@@ -16,7 +16,7 @@ func _ready():
 	yield(get_tree().create_timer(.5), "timeout")
 
 	Arcane.init()
-	Arcane.signals.connect("ArcaneClientInitialized", self, "onArcaneClientInitialized")
+	Arcane.signals.connect(AEventName.ArcaneClientInitialized, self, "onArcaneClientInitialized")
 
 	$BgMusic.play()
 
@@ -65,8 +65,8 @@ func onArcaneClientInitialized(_e):
 	
 func initController(pad):
 	pad.startGetQuaternion()
-	pad.connect('GetQuaternion', self, 'onGetQuaternion')
-	pad.connect('IframePadConnect', self, 'onPadConnect')
+	pad.connect(AEventName.GetQuaternion, self, 'onGetQuaternion')
+	pad.connect(AEventName.IframePadConnect, self, 'onPadConnect')
 
 
 func onPadConnect(e):

@@ -25,10 +25,10 @@ func _init(params) -> void:
 
 
 func initWebsocket(params):
-#	if Engine.has_singleton("DebugMode") or ["Windows", "X11", "OSX"].has(OS.get_name()):
-	initAsExternalClient(params)
+	if Engine.has_singleton("DebugMode") or ["Windows", "X11", "OSX"].has(OS.get_name()):
+		initAsExternalClient(params)
 		
-#	else: initAsIframeClient(params)
+	else: initAsIframeClient(params)
 
 	if clientInitData == null: 
 		printerr("ArcaneError: clientInitData is null on initWebSocket")
@@ -157,7 +157,9 @@ func onError():
 func onMessage() -> void:
 	var jsonData = ws.get_peer(1).get_packet().get_string_from_utf8()
 	var arcaneMessageFrom = parse_json(jsonData)
+	
 #	print('received event: ', arcaneMessageFrom.e.name)
+
 	Arcane.signals.emit_signal(arcaneMessageFrom.e.name, arcaneMessageFrom.e, arcaneMessageFrom.from)
 
 
